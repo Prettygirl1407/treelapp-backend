@@ -9,10 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->string('description')->nullable();
+            $table->foreignId('plantation_id')->constrained('plantations')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -20,7 +23,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('photos');
     }

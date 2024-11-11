@@ -9,18 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
+            $table->text('contenu');
+            $table->date('date_publication');
+            $table->foreignId('citoyen_id')->constrained('citoyens')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
+
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('publications');
     }

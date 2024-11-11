@@ -9,18 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('a_p_i_s', function (Blueprint $table) {
+        Schema::create('api_meteo', function (Blueprint $table) {
             $table->id();
+            $table->float('temperature');
+            $table->float('humidite');
+            $table->string('previsions');
+            $table->date('date_releve');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('a_p_i_s');
     }

@@ -9,10 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('plantations', function (Blueprint $table) {
             $table->id();
+            $table->string('adresse');
+            $table->integer('nbre_arbres');
+            $table->date('date_plantation');
+            $table->foreignId('citoyen_id')->constrained('citoyens')->onDelete('cascade');
+            $table->foreignId('espece_id')->constrained('especes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -20,7 +25,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('plantations');
     }
